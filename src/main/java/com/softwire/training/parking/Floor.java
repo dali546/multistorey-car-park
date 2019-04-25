@@ -36,4 +36,9 @@ public class Floor {
     public int getNumberOfFreeSpaces() {
         return (int) parkingSpaces.stream().filter(ParkingSpace::isOccupied).count();
     }
+
+    public ParkingSpace getNearestFreeSpaceForVehicle(Vehicle vehicle) {
+        // TODO - replace this!
+        return null;
+    }
 }
