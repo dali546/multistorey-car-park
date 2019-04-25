@@ -25,4 +25,9 @@ public class MultiStorey {
     public List<Floor> getFloors() {
         return floors;
     }
+
+    public ParkingSpace getSpaceContainingVehicleWithRegistration(String registration) {
+        // TODO - replace this!
+        return null;
+    }
 }
