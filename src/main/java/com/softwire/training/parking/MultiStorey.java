@@ -1,25 +1,28 @@
 package com.softwire.training.parking;
 
-import java.util.Arrays;
-import java.util.Collection;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class MultiStorey {
 
-    public MultiStorey(Collection<Floor> floors) {
-        // TODO - replace this!
-    }
+    private List<Floor> floors;
+
 
     public MultiStorey(Floor... floors) {
-        this(Arrays.asList(floors));
+        this.floors = Arrays.asList(floors);
     }
 
-    public Collection<Floor> getFloors() {
-        // TODO - replace this!
-        return null;
-    }
 
     public ParkingSpace getNearestSpaceForVehicle(Vehicle vehicle) {
-        // TODO - replace this!
-        return null;
+        return floors.stream()
+                .sorted(Comparator.comparing(Floor::getFloorNumber))
+                .map(floor -> floor.getNearestFreeSpaceForVehicle(vehicle))
+                .filter(Objects::nonNull)
+                .findFirst()
+                .orElse(null);
+    }
+
+    public List<Floor> getFloors() {
+        return floors;
     }
 }

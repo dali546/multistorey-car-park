@@ -40,14 +40,10 @@ public class Floor {
     }
 
     public ParkingSpace getNearestFreeSpaceForVehicle(Vehicle vehicle) {
-        try {
-            return parkingSpaces.stream()
-                    .filter(parkingSpace -> parkingSpace.isVehicleAllowed(vehicle))
-                    .filter(parkingSpace1 -> !parkingSpace1.isOccupied())
-                    .sorted(Comparator.comparing(ParkingSpace::getId))
-                    .collect(Collectors.toList()).get(0);
-        } catch (IndexOutOfBoundsException e) {
-            return null;
-        }
+        return parkingSpaces.stream()
+                .filter(parkingSpace -> parkingSpace.isVehicleAllowed(vehicle))
+                .filter(parkingSpace -> !parkingSpace.isOccupied())
+                .min(Comparator.comparing(ParkingSpace::getId))
+                .orElse(null);
     }
 }
