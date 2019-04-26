@@ -11,7 +11,7 @@ public class ParkingSpace {
         this.id = id;
         this.maxHeight = maxHeight;
         this.maxWidth = maxWidth;
-        typeRestriction = Vehicle.Type.CAR;
+        typeRestriction = null;
     }
 
     public ParkingSpace(int id, double maxHeight, double maxWidth, Vehicle.Type typeRestriction) {
@@ -23,7 +23,9 @@ public class ParkingSpace {
 
 
     public boolean isVehicleAllowed(Vehicle vehicle) {
-        return vehicle.getType() == typeRestriction && vehicle.getHeight() <= maxHeight && vehicle.getWidth() <= maxWidth;
+        return typeRestriction == null ?
+                vehicle.getHeight() <= maxHeight && vehicle.getWidth() <= maxWidth :
+                vehicle.getType() == typeRestriction && vehicle.getHeight() <= maxHeight && vehicle.getWidth() <= maxWidth;
     }
 
     public int getId() {

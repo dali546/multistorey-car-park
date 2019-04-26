@@ -91,6 +91,26 @@ public class ParkingSpaceTest {
     }
 
     @Test
+    public void parkingSpaceWithoutTypeRestrictionsAllowsAllVehicleTypes() {
+
+        // Arrange
+        ParkingSpace parkingSpace = new ParkingSpace(123, 2.0, 2.0);
+        Vehicle car = new Vehicle(Vehicle.Type.CAR, "REG1", 1.5, 1.5);
+        Vehicle bike = new Vehicle(Vehicle.Type.MOTORCYCLE, "REG2", 1.5, 1.5);
+        Vehicle van = new Vehicle(Vehicle.Type.VAN, "REG3", 1.5, 1.5);
+
+        // Act
+        boolean isCarAllowed = parkingSpace.isVehicleAllowed(car);
+        boolean isBikeAllowed = parkingSpace.isVehicleAllowed(bike);
+        boolean isVanAllowed = parkingSpace.isVehicleAllowed(van);
+
+        // Assert
+        assertThat(isCarAllowed).isTrue();
+        assertThat(isBikeAllowed).isTrue();
+        assertThat(isVanAllowed).isTrue();
+    }
+
+    @Test
     public void parkingSpaceAllowsVehicleToBeParked() {
 
         // Arrange
