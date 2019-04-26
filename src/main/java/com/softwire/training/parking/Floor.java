@@ -2,7 +2,9 @@ package com.softwire.training.parking;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Floor {
 
@@ -34,11 +36,18 @@ public class Floor {
     }
 
     public int getNumberOfFreeSpaces() {
-        return (int) parkingSpaces.stream().filter(ParkingSpace::isOccupied).count();
+        return (int) parkingSpaces.stream().filter(parkingSpace -> !parkingSpace.isOccupied()).count();
     }
 
     public ParkingSpace getNearestFreeSpaceForVehicle(Vehicle vehicle) {
-        // TODO - replace this!
-        return null;
+        try {
+            return parkingSpaces.stream()
+                    .filter(parkingSpace -> parkingSpace.isVehicleAllowed(vehicle))
+                    .filter(parkingSpace1 -> !parkingSpace1.isOccupied())
+                    .sorted(Comparator.comparing(ParkingSpace::getId))
+                    .collect(Collectors.toList()).get(0);
+        } catch (IndexOutOfBoundsException e) {
+            return null;
+        }
     }
 }
