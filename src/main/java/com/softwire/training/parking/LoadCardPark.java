@@ -27,30 +27,30 @@ public class LoadCardPark {
             case "CAR":
                 space = new ParkingSpace(
                         Integer.parseInt(split[1]),
-                        Double.parseDouble(split[2]),
                         Double.parseDouble(split[3]),
+                        Double.parseDouble(split[2]),
                         Vehicle.Type.CAR);
                 break;
             case "MOTORCYCLE":
                 space = new ParkingSpace(
                         Integer.parseInt(split[1]),
-                        Double.parseDouble(split[2]),
                         Double.parseDouble(split[3]),
+                        Double.parseDouble(split[2]),
                         Vehicle.Type.MOTORCYCLE);
                 break;
             case "VAN":
                 space = new ParkingSpace(
                         Integer.parseInt(split[1]),
-                        Double.parseDouble(split[2]),
                         Double.parseDouble(split[3]),
+                        Double.parseDouble(split[2]),
                         Vehicle.Type.VAN);
                 break;
             case "no restriction":
             default:
                 space = new ParkingSpace(
                         Integer.parseInt(split[1]),
-                        Double.parseDouble(split[2]),
-                        Double.parseDouble(split[3]));
+                        Double.parseDouble(split[3]),
+                        Double.parseDouble(split[2]));
         }
         floors.stream()
                 .filter(floor -> floor.getFloorNumber() == Integer.parseInt(split[0]))
