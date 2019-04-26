@@ -4,12 +4,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Floor {
 
     private int floorNumber;
-    private int capacity;
     private List<ParkingSpace> parkingSpaces;
 
 
@@ -23,16 +21,15 @@ public class Floor {
     }
 
     public int getCapacity() {
-        return capacity;
+        return parkingSpaces.size();
     }
 
-    public Collection<ParkingSpace> getParkingSpaces() {
+    public List<ParkingSpace> getParkingSpaces() {
         return parkingSpaces;
     }
 
     public void addParkingSpace(ParkingSpace parkingSpace) {
         parkingSpaces.add(parkingSpace);
-        capacity++;
     }
 
     public int getNumberOfFreeSpaces() {
