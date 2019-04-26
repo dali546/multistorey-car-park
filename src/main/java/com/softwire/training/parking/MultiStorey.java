@@ -1,6 +1,7 @@
 package com.softwire.training.parking;
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class MultiStorey {
@@ -27,7 +28,11 @@ public class MultiStorey {
     }
 
     public ParkingSpace getSpaceContainingVehicleWithRegistration(String registration) {
-        // TODO - replace this!
-        return null;
+        return floors.stream()
+                .flatMap(floor -> floor.getParkingSpaces().stream())
+                .filter(ParkingSpace::isOccupied)
+                .filter(parkingSpace -> parkingSpace.getParkedVehicle().getRegistration().equals(registration))
+                .findFirst()
+                .orElse(null);
     }
 }
