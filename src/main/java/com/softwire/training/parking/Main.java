@@ -35,8 +35,8 @@ public class Main {
                 }
             } else {
                 ParkingSpace space = multiStorey.getSpaceContainingVehicleWithRegistration(event.getRegistration());
-                if (space==null){
-                    LOGGER.debug("The Car with Reg {} is not parked here." , event.getRegistration());
+                if (space == null) {
+                    LOGGER.debug("The Car with Reg {} is not parked here.", event.getRegistration());
                 } else {
                     space.vacate();
                     LOGGER.debug("A vehicle has exited. Vehicle Reg: {}. ", event.getRegistration());
